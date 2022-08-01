@@ -6,13 +6,13 @@ import numpy as np
 
 
 @click.command()
-@click.option('--video', default=None, type=str, help='Path to rosbag', required=True)
+@click.option('--video', default=None, type=str, help='Path to video', required=True)
 
 def main(video: str):
     cap = cv2.VideoCapture(video)
     
     dest = Path(os.path.join('outputs', video.split('/')[-1].split('.')[0]))
-    dest.mkdir(exist_ok=True)
+    dest.mkdir(exist_ok=True, parents=True)
     
     i = 0
     while(cap.isOpened()):
